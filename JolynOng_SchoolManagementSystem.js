@@ -61,6 +61,7 @@ module.exports = {
             const scheduledClass = {
                 classId,
                 moduleCode,
+                moduleYear: module.moduleYear,
                 moduleName: module.moduleName,
                 time,
                 location,
@@ -78,7 +79,7 @@ module.exports = {
         if (classes.length > 0) {
             return `List of scheduled classes:\n` + 
                 classes.map((scheduledClass, index) => 
-                    `Index: ${index}, Class ID: ${scheduledClass.classId}, Module Code: ${scheduledClass.moduleCode}, Module Name: ${scheduledClass.moduleName}, Time: ${scheduledClass.time}, Location: ${scheduledClass.location}, Instructor: ${scheduledClass.instructor}\n`
+                    `Id: ${index}, Class ID: ${scheduledClass.classId}, Module Code: ${scheduledClass.moduleCode}, Module Name: ${scheduledClass.moduleName}, Time: ${scheduledClass.time}, Location: ${scheduledClass.location}, Instructor: ${scheduledClass.instructor}\n`
                 ).join('\n');
         } else {
             return 'No classes scheduled.\n';
@@ -86,8 +87,12 @@ module.exports = {
     },
 
     // Function 5: Enrolls a student into a class (Update student's class)
-    enrollStudentToClass(studentId, classId) {
-        const student = students.find(s => s.studentId === studentId);
+    enrollStudentToClass(adminNum, classId) {
+
+        //finds and returns the student object where the adminNum matches the value of adminNum
+        const student = students.find(s => s.adminNum === adminNum);
+        
+        //finds and returns the class object where the classId matches the value of classId
         const scheduledClass = classes.find(c => c.classId === classId);
     
         if (!student) {
@@ -99,8 +104,42 @@ module.exports = {
             return;
         }
 
-        student.className = scheduledClass.className; // Update student’s class
-        console.log(`${student.name} enrolled in ${scheduledClass.className} class.`);
+        student.className = scheduledClass.moduleName; // Update student’s class with the module name
+        console.log(`${student.name} enrolled in ${scheduledClass.moduleName}, year ${scheduledClass.moduleYear} class.`);
+    },
+
+    // Function 6: Retrieves a list of students for a specific class
+    getStudentListByClass(classId) {
+        //finds and returns the class object where the classId matches the value of classId
+        const scheduledClass = classes.find(c => c.classId === classId);
+        if (!scheduledClass) {
+            console.log('Class not found!');
+            return;
+        }
+
+        //filter() method returns all students whose className is also 'Web API Development'
+        const studentsInClass = students.filter(s => s.className === scheduledClass.moduleName);
+        console.log(`\nStudents enrolled in year ${scheduledClass.moduleYear} ${scheduledClass.moduleName}:`);
+        studentsInClass.forEach(student => console.log(student.name));
+    },
+
+    // Function 7: Delete a student by admin number
+    deleteStudent(adminNum) {
+        try {
+            const studentIndex = students.findIndex(s => s.adminNum === adminNum);
+
+            // Check if the student exists
+            if (studentIndex === -1) { // -1 means no student was found with the given adminNum
+                throw new Error('\nStudent not found!\n');
+            }
+
+            // Remove the student from the array
+            const deletedStudent = students.splice(studentIndex, 1)[0]; // "1" Indicates that only one element (the student at the specified index) will be removed.
+            //[0] accesses the first element of this array (which is the deleted student) and assigns it to the deletedStudent variable.
+            console.log(`\nStudent ${deletedStudent.name} with admin number ${adminNum} deleted successfully.\n`);
+        } catch (e) {
+            console.error(`\nError deleting student: ${e.message}`);
+        }
     },
 
     
