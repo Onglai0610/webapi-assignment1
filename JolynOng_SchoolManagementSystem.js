@@ -22,12 +22,57 @@ let classes = [];
 
 
 module.exports = {
-    // Registers a new student with basic details like name, age, and class
-    registerStudent() {
-        return 1+2;
+    // Function 1: Register/Add a new student with basic details like name, age, and class
+    registerStudent(studentDetails) {
+        try {
+            const { adminNum, name, age, className } = studentDetails;
+            if (!adminNum || !name || !age ) throw new Error("Missing student details.");
+
+            const student = {adminNum, name, age, className };
+            students.push(student);
+            console.log(`Student ${name} registered successfully.`);
+        } catch (e) {
+            console.error(`Error registering student: ${error.message}`);
+        }
     },
-    // Adds a new instructor with relevant information.
-    addInstructor() {
-        console.log("Hello function B");
+
+    // Function 2: Show all registered students
+    showAllRegisteredStudents() {
+        if (students.length > 0) {
+            return `List of students:\n` + 
+                students.map((student, index) => 
+                    `Index: ${index}, Admin Number: ${student.adminNum}, Student Name: ${student.name}, Age: ${student.age}, Class: ${student.className}`
+                ).join('\n');
+        } else {
+            return 'No students available.';
+        }
+    },
+
+    // Function 3: Schedule class
+    scheduleClass(classDetails) {
+        const { moduleCode, time, location, instructorId } = classDetails;
+        const instructor = instructors.find(i => i.instructorId === instructorId);
+        const module = modules.find(m => m.moduleCode === moduleCode);
+    
+        if (!instructor) {
+            console.log('Instructor not found!');
+            return;
+        }
+        if (!module) {
+            console.log('Module not found!');
+            return;
+        }
+    
+        const classId = classes.length + 1;
+        const scheduledClass = {
+            classId,
+            moduleCode,
+            moduleName: module.moduleName,
+            time,
+            location,
+            instructor: instructor.name
+        };
+        classes.push(scheduledClass);
+        console.log(`Class for ${module.moduleName} scheduled successfully.`);
     }
 }
