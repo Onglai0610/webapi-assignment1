@@ -51,11 +51,15 @@ module.exports = {
     scheduleClass(classDetails) {
         try {
             const { moduleCode, time, location, instructorId } = classDetails;
+
+            //finds and returns the instructor object where the instructorId matches the value of instructorId
             const instructor = instructors.find(i => i.instructorId === instructorId);
+            //finds and returns the module object where the moduleCode matches the value of moduleCode
             const module = modules.find(m => m.moduleCode === moduleCode);
-        
+            
             if (!instructor) throw new Error('\nInstructor not found!');
             if (!module) throw new Error('\nModule not found!');
+            if (!time || !location) throw new Error;
         
             const classId = classes.length + 1;
             const scheduledClass = {
