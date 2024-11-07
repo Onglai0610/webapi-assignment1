@@ -11,6 +11,60 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_e
 2.JSON for Data Storage: JSON is commonly used for storing data. 
 https://www.json.org/json-en.html
 
+## Usage
+
+The following code is a sample for how the functions can be used:
+```javascript
+const schoolMgmt = require('./JolynOng_SchoolManagementSystem.js');
+
+// Show all Registered students when no students are registered yet
+console.log(schoolMgmt.showAllRegisteredStudents());
+console.log("========================================");
+
+// Register students
+schoolMgmt.registerStudent({ adminNum:'234567A', name: 'Alice Johnson', age: 21, className: '' });
+schoolMgmt.registerStudent({ adminNum:'234567B', name: 'Bob Brown', age: 22, className: '' });
+schoolMgmt.registerStudent({ adminNum: '234567C', name: 'John Doe', age: 20, className: 'Web API Development' });
+console.log("========================================");
+
+
+// Show all Registered students
+console.log(schoolMgmt.showAllRegisteredStudents());
+console.log("========================================");
+
+//schedule class  moduleCode, time, location, instructorId
+schoolMgmt.scheduleClass({ moduleCode: 'EGL301', time: '13:00', location: 'S.532', instructorId:2});
+schoolMgmt.scheduleClass({ moduleCode: 'EGL303', time: '15:00', location: 'S.532', instructorId:3});
+console.log("========================================");
+
+//show all classes
+console.log(schoolMgmt.showAllClasses());
+console.log("========================================");
+
+//enroll student to class enrollStudentToClass(adminNum, classId)
+schoolMgmt.enrollStudentToClass('234567A', 1);
+schoolMgmt.enrollStudentToClass('234567B', 2);
+schoolMgmt.enrollStudentToClass('234567C', 1);
+console.log("========================================");
+
+// Get list of student by classid
+console.log(schoolMgmt.getStudentListByClass(1));
+console.log("========================================");
+
+
+// This will delete the student with admin number '234567A'.
+schoolMgmt.deleteStudent('234567B');  
+console.log("========================================");
+
+//Try deleting the same student.
+schoolMgmt.deleteStudent('234567B');  
+console.log("========================================");
+
+// Show all students to confirm the student is deleted.
+console.log(schoolMgmt.showAllRegisteredStudents());
+console.log("========================================");
+```
+
 ## Functions
 
 - registerStudent(studentDetails)  
