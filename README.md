@@ -32,4 +32,4 @@ https://www.json.org/json-en.html
   Retrieves a list of all students enrolled in a specific class. Helps administrators view the composition of a particular class. If the `classId` is not found, returns `"Class not found!"`.
 
 - deleteStudent(adminNum)  
-  Allows the removal of a student record based on the student’s `admin number`. Ensures data integrity by confirming student existence before deletion. If the student `admin number` is not found, returns `"Student with admin number 123456A(example adminnum) not found!"`.
+  Allows the removal of a student record based on the student’s `admin number`. Ensures data integrity by confirming student existence before deletion. If the student `admin number` is not found, returns `"Student with admin number 123456A(example adminNum) not found!"`.
