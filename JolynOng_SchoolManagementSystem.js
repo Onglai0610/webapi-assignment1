@@ -134,7 +134,7 @@ module.exports = {
 
             // Check if the student exists
             if (studentIndex === -1) { // -1 means no student was found with the given adminNum
-                throw new Error('\nStudent not found!\n');
+                throw new Error(`\nStudent with admin number "${adminNum}" not found!\n`);
             }
 
             // Remove the student from the array
