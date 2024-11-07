@@ -11,36 +11,25 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_e
 2.JSON for Data Storage: JSON is commonly used for storing data. 
 https://www.json.org/json-en.html
 
-# Functions
-registerStudent:
+## Functions
 
-Allows administrators to register new students by entering basic details such as name, age, admin number, and class name.
-Data validation is included to ensure all required fields are filled before registration.
+- registerStudent(studentDetails)  
+  Allows administrators to register new students by entering basic details such as `name`, `age`, `admin number`, and `class name`. Data validation is included to ensure all required fields are filled before registration.
 
-showAllRegisteredStudents:
+- showAllRegisteredStudents()  
+  Retrieves a list of all registered students including `name`, `age`, `admin number`, and `class name`. If no students are available, returns `"No students available."`
 
-Retrieves all student name, age, admin number, and class name.
-"No students available." will be return if no student is added into the database.
+- scheduleClass(classDetails)  
+  Allows administrators to schedule classes by linking `moduleCode`, `time`, `location`, and `instructorId`. Each class is assigned a unique `classId` for future reference and enrollment.
 
-scheduleClass:
-Allows administrators to schedule classes by linking moduleCode, time, location, instructorId.
-Classes are assigned unique class IDs to allow for future reference and enrollment.
+- showAllClasses()  
+  Retrieves a list of all scheduled classes, including relevant details such as `classId`, `moduleCode`, `moduleName`, `time`, `location`, and `instructor`.
 
-showAllClasses:
-Retrieves all scheduled classes.
+- enrollStudentToClass(adminNum, classId)  
+  Allows administrators to enroll a student in a specific class by linking the student’s `admin number` with the `classId`. Updates the student’s class information to reflect their enrollment. If the student or class is not found, returns `"Student not found!"` or `"Class not found!"` accordingly.
 
+- getStudentListByClass(classId)  
+  Retrieves a list of all students enrolled in a specific class. Helps administrators view the composition of a particular class. If the `classId` is not found, returns `"Class not found!"`.
 
-enrollStudentToClass:
-Allows administrators to enroll students to classes by linking studentAdminNumber, classID.
-Updates the student’s class information to reflect their enrollment.
-If one of the detail is entered wrongly, either "Student not found!" or "Class not found!" will be returned.
-
-getStudentListByClass:
-Retrieves a list of all students enrolled in a specific class.
-Helps administrators view class composition.
-If the classId is not found, "Class not found!" will be returned.
-
-deleteStudent:
-Allows the removal of student records based on their admin number.
-Ensures data integrity by confirming student existence before deletion.
-If student admin numbe is not found, "Student with admin number "${adminNum}" not found!" will be returned.
+- deleteStudent(adminNum)  
+  Allows the removal of a student record based on the student’s `admin number`. Ensures data integrity by confirming student existence before deletion. If the student `admin number` is not found, returns `"Student with admin number ${adminNum} not found!"`.
