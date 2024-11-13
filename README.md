@@ -19,6 +19,9 @@ console.log("========================================");
 schoolMgmt.registerStudent({ adminNum:'234567A', name: 'Alice Johnson', age: 21, className: '' });
 schoolMgmt.registerStudent({ adminNum:'234567B', name: 'Bob Brown', age: 22, className: '' });
 schoolMgmt.registerStudent({ adminNum: '234567C', name: 'John Doe', age: 20, className: 'Web API Development' });
+
+//Try register a student with same admin number
+schoolMgmt.registerStudent({ adminNum: '234567C', name: 'John Doe', age: 20, className: 'Web API Development' });
 console.log("========================================");
 
 

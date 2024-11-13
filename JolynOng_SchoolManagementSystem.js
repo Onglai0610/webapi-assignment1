@@ -27,9 +27,20 @@ module.exports = {
             const { adminNum, name, age, className } = studentDetails;
             if (!adminNum || !name || !age ) throw new Error("Missing student details.\n");
 
-            const student = { adminNum, name, age, className };
-            students.push(student);
-            console.log(`Student ${name} registered successfully.\n\n`);
+            const studentAdminNum = students.find(i => i.adminNum === adminNum);
+
+            if (!studentAdminNum) {
+                const student = { adminNum, name, age, className };
+                students.push(student);
+                console.log(`Student ${name} registered successfully.\n\n`);
+            }
+            else {
+                console.error(`Student with Admin Number ${adminNum} is already registered.`);
+                console.error('Please enter the correct Admin Number')
+                return;
+                
+            }
+            
         } catch (e) {
             console.error(`Error registering student: ${e.message}\n`);
         }
