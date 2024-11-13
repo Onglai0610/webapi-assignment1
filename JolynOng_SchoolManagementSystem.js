@@ -27,7 +27,7 @@ module.exports = {
             const { adminNum, name, age, className } = studentDetails;
             if (!adminNum || !name || !age ) throw new Error("Missing student details.\n");
 
-            const studentAdminNum = students.find(i => i.adminNum === adminNum);
+            const studentAdminNum = students.find(s => s.adminNum === adminNum);
 
             if (!studentAdminNum) {
                 const student = { adminNum, name, age, className };
