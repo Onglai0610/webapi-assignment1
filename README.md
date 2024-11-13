@@ -4,12 +4,6 @@ This module is for managing students, instructors, module, and classes in a scho
 
 This School Management Module is designed to assist school administrators in managing essential school data, including students, instructors, modules, and class schedules. This module enables users to register students, schedule classes, assign students to classes, and search and delete student records as needed.
 
-# References
-1.Error Handling in JavaScript: Error handling. Referred to lab 5 "Try...Catch" method and MDN's guide on Error Handling to learn more about try-catch statements.
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling
-
-2.JSON for Data Storage: JSON is commonly used for storing data. 
-https://www.json.org/json-en.html
 
 ## Usage
 
@@ -93,3 +87,12 @@ node app
 
 - deleteStudent(adminNum)  
   Allows the removal of a student record based on the student’s `admin number`. Ensures data integrity by confirming student existence before deletion. If the student `admin number` is not found, returns `"Student with admin number 123456A(example adminNum) not found!"`.
+
+# References
+1.Error Handling in JavaScript:
+  Error handling. Referred to lab 5 "Try...Catch" method and  MDN's guide on Error Handling to learn more about try-catch statements.
+  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling
+
+2.JSON for Data Storage: 
+  JSON is commonly used for storing data. 
+  https://www.json.org/json-en.html
