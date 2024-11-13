@@ -21,14 +21,14 @@ const schoolMgmt = require('./JolynOng_SchoolManagementSystem.js');
 console.log(schoolMgmt.showAllRegisteredStudents());
 console.log("========================================");
 
-// Register students
+// Register students (add)
 schoolMgmt.registerStudent({ adminNum:'234567A', name: 'Alice Johnson', age: 21, className: '' });
 schoolMgmt.registerStudent({ adminNum:'234567B', name: 'Bob Brown', age: 22, className: '' });
 schoolMgmt.registerStudent({ adminNum: '234567C', name: 'John Doe', age: 20, className: 'Web API Development' });
 console.log("========================================");
 
 
-// Show all Registered students
+// Show all Registered students 
 console.log(schoolMgmt.showAllRegisteredStudents());
 console.log("========================================");
 
@@ -56,7 +56,9 @@ console.log("========================================");
 schoolMgmt.deleteStudent('234567B');  
 console.log("========================================");
 
-//Try deleting the same student.
+//Try deleting the same student. 
+//Error deleting student: 
+//Student with admin number "234567B" not found! will be shown.
 schoolMgmt.deleteStudent('234567B');  
 console.log("========================================");
 
@@ -64,6 +66,8 @@ console.log("========================================");
 console.log(schoolMgmt.showAllRegisteredStudents());
 console.log("========================================");
 ```
+Save the code above as "app.js" and run
+```node app```
 
 ## Functions
 
