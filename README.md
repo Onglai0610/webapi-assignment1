@@ -67,7 +67,9 @@ console.log(schoolMgmt.showAllRegisteredStudents());
 console.log("========================================");
 ```
 Save the code above as "app.js" and run
-```node app```
+```
+node app
+```
 
 ## Functions
 
