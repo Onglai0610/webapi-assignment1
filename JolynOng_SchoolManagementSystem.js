@@ -27,19 +27,15 @@ module.exports = {
             const { adminNum, name, age, className } = studentDetails;
             if (!adminNum || !name || !age ) throw new Error("Missing student details.\n");
 
-            const studentAdminNum = students.find(s => s.adminNum === adminNum);
+            const existingStudent = students.find(s => s.adminNum === adminNum);
+            if (existingStudent) {
+                throw new Error(`Student with Admin Number ${adminNum} is already registered.`);
+            }
 
-            if (!studentAdminNum) {
-                const student = { adminNum, name, age, className };
-                students.push(student);
-                console.log(`Student ${name} registered successfully.\n\n`);
-            }
-            else {
-                console.error(`Student with Admin Number ${adminNum} is already registered.`);
-                console.error('Please enter the correct Admin Number')
-                return;
-                
-            }
+            const student = { adminNum, name, age, className };
+            students.push(student);
+            console.log(`Student ${name} registered successfully.\n\n`);
+            
             
         } catch (e) {
             console.error(`Error registering student: ${e.message}\n`);
@@ -71,6 +67,16 @@ module.exports = {
             if (!instructor) throw new Error('\nInstructor not found!');
             if (!module) throw new Error('\nModule not found!');
             if (!time || !location) throw new Error;
+
+            //Check for overlapping times for the same instructor
+            const overlappingClass = classes.find(
+                c => c.instructor === instructor.name && c.time === time
+            );
+            if (overlappingClass) {
+                throw new Error(
+                    `Instructor ${instructor.name} is already scheduled for a class at ${time}.`
+                );
+            }
         
             const classId = classes.length + 1;
             const scheduledClass = {
